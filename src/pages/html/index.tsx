@@ -3,8 +3,8 @@ import { useEffect } from 'react'
 import { useRecoilState } from 'recoil'
 import { parse } from 'cookie'
 import { MobileHtml } from '../../mobile/html'
-import { mobileState, configState } from '../state'
-import { htmlState } from './state'
+import { mobileState, configState } from '../../store/global'
+import { htmlState } from '../../store/html'
 import Tools from './components/tools'
 
 const Html: NextPage<any> = ({ posts }) => {

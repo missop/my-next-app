@@ -4,7 +4,7 @@ import type { AppProps, AppContext } from 'next/app'
 import Head from 'next/head'
 import { RecoilRoot } from 'recoil'
 import { isInWechat, isInWechatMobile, isMobileDevice, flexible } from '@/utils'
-import { mobileState, configState } from './state'
+import { mobileState, configState } from '../store/global'
 
 /**
  * 入口文件
@@ -32,7 +32,6 @@ function MyApp({ Component, pageProps, isMobile, isWechat, isWechatMobile, ip }:
               name='viewport'
               content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover'
             />
-            <link rel='stylesheet' href='/iconfont.css' />
             <script>{`;(${flexible})()`}</script>
           </>
         ) : null}
@@ -58,7 +57,7 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
   // calls page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(appContext)
 
-  return { ...appProps, isMobile, isWechat, isWechatMobile, ip: req?.connection.remoteAddress }
+  return { ...appProps, isMobile, isWechat, isWechatMobile, ip: req?.connection?.remoteAddress }
 }
 
 export default MyApp
